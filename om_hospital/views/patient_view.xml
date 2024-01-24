@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--    Calendar View-->
+    <record id="view_hospital_patient_calendar" model="ir.ui.view">
+        <field name="name">hospital.patient.calendar</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <calendar string="Calendar" date_start="date_of_birth" color="name">
+                <field name="name"/>
+                <field name="last_name"/>
+            </calendar>
+        </field>
+    </record>
+    <!--    Graph view-->
+    <record id="view_hospital_patient_graph" model="ir.ui.view">
+        <field name="name">hospital.patient.graph</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <graph string="Patients Analysis" sample="1">
+                <field name="blood_group"/>
+                <field name="age"/>
+            </graph>
+        </field>
+    </record>
+    <!--    Pivot view-->
+    <record id="view_hospital_patient_pivot" model="ir.ui.view">
+        <field name="name">hospital.patient.pivot</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <pivot string="Patients">
+                <field name="name" type="row"/>
+                <field name="last_name"/>
+                <field name="age" type="col"/>
+                <field name="blood_group"/>
+            </pivot>
+        </field>
+    </record>
+    <!--Search view-->
+    <record id="view_hospital_patient_search" model="ir.ui.view">
+        <field name="name">hospital.patient.search</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" string="Patient First Name"
+                       filter_domain="['|', ('name', 'ilike', self), ('blood_group', 'ilike', self)]"/>
+                <field name="blood_group" string="Patient Blood Group"/>
+                <field name="gender" string="Patient Gender"/>
+                <group expand="0" string="Group By">
+                    <filter name="group by gender" string="Gender" context="{'group_by':'gender'}"/>
+                </group>
+                <searchpanel>
+                    <field name="gender" icon="fa-users" select="multi" enable_counters="1"/>
+                    <field name="state" icon="fa-users" select="multi" enable_counters="1"/>
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+    <!--Tree view-->
+    <record id="view_hospital_patient_tree" model="ir.ui.view">
+        <field name="name">hospital.patient.tree</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" string="Patient First Name"/>
+                <field name="last_name" string="Patient Last Name"/>
+                <field name="ref" string="Patient Reference"/>
+                <field name="age" string="Patient Age"/>
+                <field name="gender" string="Patient Gender"/>
+                <field name="blood_group" string="Patient Blood Group"/>
+                <field name="state" string="State" widget="badge" decoration-info="state == 'draft'" decoration-success="state == 'confirm'"/>
+            </tree>
+        </field>
+    </record>
+    <!--Form view-->
+    <record id="view_hospital_patient_form" model="ir.ui.view">
+        <field name="name">hospital.patient.form</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button id="button_confirm" name="action_confirm" string="Confirm" type="object"
+                            class="btn-primary" states="draft,cancel"/>
+                    <button id="button_draft" name="action_draft" string="Set To Draft" type="object"
+                            class="btn-primary" states="confirm,cancel"/>
+                    <field name="state" widget="statusbar" options="{'clickable': '1'}"
+                           statusbar_visible="draft,confirm"/>
+                    <button id="button_doctor" name="action_doctor"
+                            string="See Doctor Details"
+                            type="object" class="btn-primary"/>
+                    <button name="%(om_hospital.action_hospital_appointment)d" type="action" string="Cancel"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" attrs="{'readonly' : [('state', '=', 'confirm')]}"/>
+                            <field name="last_name" attrs="{'readonly' : [('state', '=', 'confirm')]}"/>
+                            <field name="ref"/>
+                            <field name="date_of_birth"/>
+                            <field name="age" attrs="{'readonly' : [('state', '=', 'confirm')]}"/>
+
+                        </group>
+                        <group>
+                            <field name="gender" attrs="{'readonly' : [('state', '=', 'confirm')]}"/>
+                            <field name="blood_group" attrs="{'readonly' : [('state', '=', 'confirm')]}"/>
+                            <field name="active" attrs="{'readonly' : [('state', '=', 'confirm')]}"/>
+                            <field name="attachments"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Pharmacy" name="pharmacy">
+                            <field name="pharmacy_line_ids">
+                                <tree editable="bottom">
+                                    <field name="medicine_id"/>
+                                    <field name="price_unit"/>
+                                    <!--<field name="price_unit" sum="Total Price"/>-->
+                                    <field name="qty"/>
+                                </tree>
+                                <form>
+                                    <group>
+                                        <field name="medicine_id"/>
+                                        <field name="price_unit"/>
+                                        <field name="qty"/>
+                                    </group>
+                                </form>
+                            </field>
+                            <group>
+                                <field name="total"/>
+                            </group>
+                        </page>
+                        <page string="Doctors" name="doctor">
+                            <group>
+                                <field name="doctor_id"/>
+                                <field name="contact"/>
+                                <field name="email"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <!-- Chatter -->
+<!--                <div class="oe_chatter">-->
+<!--                    <field name="message_follower_ids" groups="base.group_user"/>-->
+<!--                    <field name="message_ids"/>-->
+<!--                </div>-->
+            </form>
+        </field>
+    </record>
+    <!--Kanban view-->
+    <record id="view_hospital_patient_kanban" model="ir.ui.view">
+        <field name="name">hospital.patient.kanban</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <kanban sample="1" class="o_kanban_product_template">
+                <field name="name"/>
+                <field name="last_name"/>
+                <field name="age"/>
+                <field name="blood_group"/>
+                <template>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click">
+                            <div class="oe_kanban_details">
+                                <div>
+                                    <div>
+                                        <div class="o_kanban_image">
+                                            <image alt="image" t-att-src="kanban_image('hospital.patient', 'image')"/>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <strong>
+                                                <field name="name"/>
+                                                <span></span>
+                                                <field name="last_name"/>
+                                            </strong>
+                                            <br/>
+                                        </div>
+                                        <div>
+                                            <div>
+                                                <field name="age"/>
+                                                <br/>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div>
+                                                <field name="blood_group"/>
+                                                <br/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </template>
+            </kanban>
+        </field>
+    </record>
+    <!-- To create window action-->
+    <record id="action_hospital_patient" model="ir.actions.act_window">
+        <field name="name">Patients</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hospital.patient</field>
+        <field name="view_mode">tree,form,kanban,pivot,graph,calendar</field>
+        <field name="context">{'search_default-filter_male': 1, 'search_default_group_by_gender': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first patient !
+            </p>
+        </field>
+    </record>
+    <menuitem
+            id="menu_patient"
+            name="Patients"
+            action="action_hospital_patient"
+            parent="menu_patient_master"
+            sequence="10"/>
+</odoo>

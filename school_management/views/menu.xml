@@ -1,0 +1,37 @@
+<odoo>
+
+    <menuitem
+            id="menu_teacher"
+            name="School"
+            parent="hr.menu_hr_root"
+            sequence="10"/>
+
+    <menuitem
+            id="menu_teacher_sub"
+            name="Teacher"
+            parent="menu_teacher"
+            action="action_school_teacher"
+            sequence="20"/>
+
+    <menuitem
+            id="menu_class_sub"
+            name="Class"
+            parent="menu_teacher"
+            action="action_school_class"
+            sequence="30"/>
+
+    <menuitem
+            id="menu_student_sub"
+            name="Student"
+            parent="menu_teacher"
+            action="action_school_student"
+            sequence="40"/>
+
+    <menuitem
+            id="menu_fees_sub"
+            name="Fees"
+            parent="menu_teacher"
+            action="action_school_fees"
+            sequence="50"/>
+
+</odoo>

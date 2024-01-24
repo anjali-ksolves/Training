@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="custom_purchase_order">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h1 style="text-align: center">Custom Purchase Order</h1>
+                        <p>Purchase Order:
+                            <span t-field="o.name"/>
+                        </p>
+                        <p>Vendor Name:
+                            <span t-field="o.partner_id.name"/>
+                        </p>
+                        <p>Confirmation Date:
+                            <span t-field="o.date_approve"/>
+                        </p>
+                    </div>
+                    <div>
+                        <h3>Product Lines</h3>
+                    </div>
+                    <table class="table table-sm o_main_table table-borderless mt-4">
+                        <thead>
+                            <tr>
+                                <th name="th_product_id">
+                                    <strong>Product</strong>
+                                </th>
+                                <th name="th_description">
+                                    <strong>Description</strong>
+                                </th>
+                                <th name="th_qty">
+                                    <strong>Quantity</strong>
+                                </th>
+                                <th name="th_received">
+                                    <strong>Received</strong>
+                                </th>
+                                <th name="th_billed">
+                                    <strong>Billed</strong>
+                                </th>
+                                <th name="th_price_unit" class="text-end">
+                                    <strong>Unit Price</strong>
+                                </th>
+                                <th name="th_taxes">
+                                    <strong>Taxes</strong>
+                                </th>
+                                <th name="th_subtotal" class="text-end">
+                                    <strong>Subtotal</strong>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-att-class="'bg-200 fw-bold o_line_section'">
+                                <t t-foreach="o.custom_purchase_lines_id" t-as="i">
+                                    <tr>
+                                        <td name="product_id">
+                                            <span t-field="i.product_id"/>
+                                        </td>
+                                        <td name="description">
+                                            <span t-field="i.description"/>
+                                        </td>
+                                        <td name="qty">
+                                            <span t-field="i.qty"/>
+                                        </td>
+                                        <td name="received">
+                                            <span t-field="i.received"/>
+                                        </td>
+                                        <td name="billed">
+                                            <span t-field="i.billed"/>
+                                        </td>
+                                        <td name="price_unit">
+                                            <span t-field="i.price_unit"/>
+                                        </td>
+                                        <td name="taxes">
+                                            <span t-field="i.taxes"/>
+                                        </td>
+                                        <td name="subtotal">
+                                            <span t-field="i.subtotal"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br/>
+                    <div>
+                        <h3>Invoice Lines</h3>
+                    </div>
+                    <table class="table table-sm o_main_table table-borderless mt-4">
+                        <thead name="Invoice Lines">
+                            <tr>
+                                <th name="th_product_id">
+                                    <strong>Product</strong>
+                                </th>
+                                <th name="th_description">
+                                    <strong>Label</strong>
+                                </th>
+                                <th name="th_qty">
+                                    <strong>Quantity</strong>
+                                </th>
+                                <th name="th_price_unit">
+                                    <strong>Unit Price</strong>
+                                </th>
+                                <th name="th_taxes">
+                                    <strong>Taxes</strong>
+                                </th>
+                                <th name="th_subtotal">
+                                    <strong>Subtotal</strong>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-att-class="'bg-200 fw-bold o_line_section'">
+                                <t t-foreach="o.order_line" t-as="j">
+                                    <t t-foreach="j.invoice_lines" t-as="line">
+                                        <tr>
+                                            <td name="product_id">
+                                                <span t-field="line.product_id.name"/>
+                                            </td>
+                                            <td name="description">
+                                                <span t-field="line.name"/>
+                                            </td>
+                                            <td name="qty">
+                                                <span t-field="line.quantity"/>
+                                            </td>
+                                            <td name="price_unit">
+                                                <span t-field="line.price_unit"/>
+                                            </td>
+                                            <td name="taxes">
+                                                <span t-field="line.tax_ids"/>
+                                            </td>
+                                            <td name="subtotal">
+                                                <span t-field="line.price_subtotal"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </t>
+                            </t>
+                        </tbody>
+                    </table>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

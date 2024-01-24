@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="view_order_form_inherit" model="ir.ui.view">
+            <field name="name">sale.order.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+                    <field name="confirmed_user_id"/>
+                </xpath>
+
+                <xpath expr="//button[@id='create_invoice']" position="before">
+                    <button name="%(odoo_inheritance.action_sale_button)d" string="Custom Order Lines" type="action"
+                            class="btn-primary"/>
+                </xpath>
+
+                <xpath expr="//button[@id='create_invoice']" position="before">
+                    <button name="send_bill" string="Send Bill" type="object"
+                            attrs="{'invisible':[('invoice_count','=',0)]}"
+                            class="btn-primary"/>
+                </xpath>
+
+                <xpath expr="//page[@name='customer_signature']" position="after">
+                    <page string="Custom Order Lines" name="custom_order_lines">
+                        <field name="custom_order_lines_id">
+                            <tree editable="bottom">
+                                <field name="product_id"/>
+                                <field name="description"/>
+                                <field name="quantity"/>
+                                <field name="delivered"/>
+                                <field name="invoiced"/>
+                                <field name="price_unit"/>
+                                <field name="taxes" widget="many2many_tags"/>
+                                <field name="subtotal"/>
+                            </tree>
+                            <form>
+                                <group>
+                                    <field name="product_id"/>
+                                    <field name="description"/>
+                                    <field name="quantity"/>
+                                    <field name="delivered"/>
+                                </group>
+                                <group>
+                                    <field name="invoiced"/>
+                                    <field name="price_unit"/>
+                                    <field name="taxes" widget="many2many_tags"/>
+                                    <field name="subtotal" sum="Total"/>
+                                </group>
+                            </form>
+                        </field>
+                        <group>
+                            <field name="total"/>
+                        </group>
+                    </page>
+                </xpath>
+                <xpath expr="//page[@name='order_lines']//tree//field[@name='qty_delivered']" position="after">
+                    <field name="discount_amount"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

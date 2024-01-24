@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="student_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <header>
+                        <div class="text-center" style="width: 40%;">
+                            <img src="/school_management/static/description/ksolves.png" style="width:100%"/>
+                        </div>
+                    </header>
+
+                    <div class="page">
+                        <p>Student Name:
+                            <span t-field="o.name"/>
+                        </p>
+                        <p>Age:
+                            <span t-field="o.age"/>
+                        </p>
+                        <p>Class:
+                            <span t-field="o.class_id.name"/>
+                        </p>
+                    </div>
+                    <table class="table table-striped table-sm o_main_table table-bordered text-center table-border mt-4">
+                        <thead class="table-info">
+                            <tr>
+                                <th name="th_subject">
+                                    <strong>Subject</strong>
+                                </th>
+                                <th name="th_marks">
+                                    <strong>Marks</strong>
+                                </th>
+                                <th name="th_out_of">
+                                    <strong>Total Marks</strong>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-att-class="'bg-200 fw-bold o_line_section'">
+                                <t t-foreach="o.exam_ids" t-as="i">
+                                    <tr>
+                                        <td name="subject">
+                                            <span t-field="i.subject"/>
+                                        </td>
+                                        <td name="marks">
+                                            <span t-field="i.marks"/>
+                                        </td>
+                                        <td name="out_of">
+                                            <span t-field="i.out_of"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tr>
+                        </tbody>
+                    </table>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_device_assignment_tree" model="ir.ui.view">
+            <field name="name">device.assignment.tree</field>
+            <field name="model">device.assignment</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="change"/>
+                    <field name="name" string="Device Assignment Name" attrs="{'invisible': [('change', '=', True)]}"/>
+                    <field name="date_start" string="Start Date"/>
+                    <field name="date_expire" string="Expire Date"/>
+                    <field name="state" string="State"/>
+                    <field name="emp_id"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_device_assignment_form" model="ir.ui.view">
+            <field name="name">device.assignment.form</field>
+            <field name="model">device.assignment</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="insert_name" string="Insert Query" type="object"
+                                class="btn-primary"/>
+                        <button name="select_query" string="Select Query" type="object"
+                                class="btn-primary"/>
+                        <button name="update_query" string="Update Query" type="object"
+                                class="btn-primary"/>
+                        <button name="delete_query" string="Delete Query" type="object"
+                                class="btn-primary"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="name" string="Device Assignment Name"
+                                   attrs="{'invisible': [('change', '=', True)]}"/>
+                            <field name="date_start" string="Start Date"/>
+                            <field name="date_expire" string="Expire Date"/>
+                            <field name="change"/>
+                            <field name="state" string="State"/>
+                            <field name="emp_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="action_device_assignment" model="ir.actions.act_window">
+            <field name="name">Device Assignment</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">device.assignment</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create your first device assignment !
+                </p>
+            </field>
+        </record>
+        <menuitem
+                id="menu_device_assignment"
+                name="Device Assignment"
+                parent="menu_device_root"
+                action="action_device_assignment"
+                sequence="20"/>
+    </data>
+</odoo>

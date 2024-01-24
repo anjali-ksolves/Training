@@ -1,0 +1,45 @@
+<odoo>
+    <record id="view_school_fees_tree" model="ir.ui.view">
+        <field name="name">school.fees.tree</field>
+        <field name="model">school.fees</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="student_ids"/>
+                <field name="month"/>
+                <field name="total_fees"/>
+                <field name="paid"/>
+                <field name="remaining"/>
+            </tree>
+        </field>
+    </record>
+    <!--Form view-->
+    <record id="view_school_fees_form" model="ir.ui.view">
+        <field name="name">school.fees.form</field>
+        <field name="model">school.fees</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="student_ids"/>
+                        <field name="month"/>
+                        <field name="total_fees"/>
+                        <field name="paid"/>
+                        <field name="remaining"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_school_fees" model="ir.actions.act_window">
+        <field name="name">Fees</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">school.fees</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your fee structure !
+            </p>
+        </field>
+    </record>
+</odoo>

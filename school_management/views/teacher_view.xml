@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_hr_employee_form_inherit_teacher" model="ir.ui.view">
+            <field name="name">hr.employee.inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='public']" position="after">
+                    <page string="Alloted classes" name="alloted_classes">
+                        <field name="class_ids">
+                            <tree>
+                                <field name="section"/>
+                                <field name="name"/>
+                            </tree>
+                            <form>
+                                <group>
+                                    <field name="section"/>
+                                    <field name="name"/>
+                                </group>
+                            </form>
+                        </field>
+                    </page>
+                </xpath>
+                <xpath expr="//field[@name='coach_id']" position="after">
+                    <button name="action_confirm" string="Action Confirm" type="object"
+                            class="btn-primary"/>
+                </xpath>
+                <xpath expr="//button[@name='action_confirm']" position="after">
+                    <button name="create_duplicate" string="Create Duplicate" type="object"
+                            class="btn-primary"/>
+                </xpath>
+                 <xpath expr="//button[@name='create_duplicate']" position="after">
+                    <button name="action_update" string="Action Update" type="object"
+                            class="btn-primary"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_school_teacher_tree" model="ir.ui.view">
+            <field name="name">school.teacher.tree</field>
+            <field name="model">hr.employee</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" string="Name"/>
+                    <field name="work_phone" string="Contact"/>
+                    <field name="work_email" string="Email"/>
+                </tree>
+            </field>
+        </record>
+        <!--Form view-->
+        <record id="view_school_teacher_form" model="ir.ui.view">
+            <field name="name">school.teacher.form</field>
+            <field name="model">hr.employee</field>
+            <field name="arch" type="xml">
+                <form>
+<!--                    <header>-->
+<!--                        <button name="action_confirm" string="Action Confirm" type="object"-->
+<!--                                class="btn-primary"/>-->
+<!--                    </header>-->
+                    <sheet>
+                        <group>
+                            <field name="name" string="Name"/>
+                            <field name="work_phone" string="Contact"/>
+                            <field name="work_email" string="Email"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_school_teacher" model="ir.actions.act_window">
+            <field name="name">Teacher</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.employee</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create your first teacher !
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>
+

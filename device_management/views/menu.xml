@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem
+            id="menu_device_root"
+            name="Devices"
+            sequence="0"/>
+
+    <menuitem
+            id="menu_employee"
+            name="Employees"
+            parent="menu_device_root"
+            action="hr.open_view_employee_list_my"
+            sequence="70"
+    />
+</odoo>

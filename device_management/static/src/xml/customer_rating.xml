@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<template>
+    <t t-name="device_management.star_template" owl="1">
+        <t t-foreach="[1,2,3,4,5]" t-as="val" t-key="val">
+            <div t-on-click="onClick">
+                <t t-if="val &lt;= current_val">
+                    <span t-att-class="mode === 'edit' ? 'fa fa-star star_icon' : 'fa fa-star'"
+                          t-att-value="val"></span>
+                </t>
+                <t t-else="" t-on-click="onClick">
+                    <span t-att-class="mode === 'edit' ? 'fa fa-star-o star_icon' : 'fa fa-star-o'"
+                          t-att-value="val"></span>
+                </t>
+
+            </div>
+
+        </t>
+        <!--        <span class="fa fa-star-o"></span>-->
+        <!--        <span class="fa fa-star-o"></span>-->
+        <!--        <span class="fa fa-star-o"></span>-->
+        <!--        <span class="fa fa-star-o"></span>-->
+        <!--        <span class="fa fa-star-o"></span>-->
+
+    </t>
+</template>

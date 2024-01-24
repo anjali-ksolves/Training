@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_patient_pharmacy_tree" model="ir.ui.view">
+        <field name="name">patient.pharmacy.lines.tree</field>
+        <field name="model">patient.pharmacy.lines</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="medicine_id" string="Product id"/>
+                <field name="price_unit" string="Product Price"/>
+                <field name="qty" string="Product Quantity"/>
+
+            </tree>
+
+        </field>
+    </record>
+
+    <record id="view_patient_pharmacy_form" model="ir.ui.view">
+        <field name="name">patient.pharmacy.lines.form</field>
+        <field name="model">patient.pharmacy.lines</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="medicine_id" string="Product id"/>
+                        <field name="price_unit" string="Product Price"/>
+                        <field name="qty" string="Product Quantity"/>
+                    </group>
+                </sheet>
+                <!-- Chatter -->
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="view_patient_pharmacy_kanban" model="ir.ui.view">
+        <field name="name">patient.pharmacy.lines.kanban</field>
+        <field name="model">patient.pharmacy.lines</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="medicine_id"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click">
+                            <div t-attf-class="o_kanban_details">
+
+                                <field name="medicine_id"/>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="action_patient_pharmacy" model="ir.actions.act_window">
+        <field name="name">Pharmacy</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">patient.pharmacy.lines</field>
+        <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+    <menuitem
+            id="menu_patient_pharmacy"
+            parent="menu_pharmacy_master"
+            name="Pharmacy"
+            action="action_patient_pharmacy"
+            sequence="10"/>
+
+
+</odoo>
