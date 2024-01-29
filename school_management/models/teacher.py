@@ -12,19 +12,15 @@ class Teacher(models.Model):
     subject_name = fields.Many2one('odoo.subject', string="Subject")
 
     def action_confirm(self):
-        connection = sql_db.db_connect('newnewnew')
-        with contextlib.closing(connection.cursor()) as cr:
-            cr.autocommit(True)
-            env = api.Environment(cr, SUPERUSER_ID, {})
-            env['hr.employee'].create({'name': self.name, 'work_email': self.work_email})
+        pass
 
-    def create_duplicate(self):
-        self.env['hr.employee'].create({'name': self.name, 'work_email': self.work_email})
-
-    def action_update(self):
-        connection = sql_db.db_connect('odoo_16_4')
-        with contextlib.closing(connection.cursor()) as cr:
-            cr.autocommit(True)
-            env = api.Environment(cr, SUPERUSER_ID, {})
-            env['hr.employee'].write({'work_email': self.work_email})
+    # def action_confirm(self):
+    #     connection = sql_db.db_connect('newnewnew')
+    #     with contextlib.closing(connection.cursor()) as cr:
+    #         cr.autocommit(True)
+    #         env = api.Environment(cr, SUPERUSER_ID, {})
+    #         env['hr.employee'].create({'name': self.name, 'work_email': self.work_email})
+    #
+    # def create_duplicate(self):
+    #     self.env['hr.employee'].create({'name': self.name, 'work_email': self.work_email})
 

@@ -29,11 +29,11 @@
                         <field name="booking_date"/>
                     </group>
                 </sheet>
-                <!-- Chatter -->
-                <div class="oe_chatter">
-                    <field name="message_follower_ids" groups="base.group_user"/>
-                    <field name="message_ids"/>
-                </div>
+<!--                &lt;!&ndash; Chatter &ndash;&gt;-->
+<!--                <div class="oe_chatter">-->
+<!--                    <field name="message_follower_ids" groups="base.group_user"/>-->
+<!--                    <field name="message_ids"/>-->
+<!--                </div>-->
             </form>
         </field>
     </record>

@@ -22,6 +22,8 @@
                             type="action" class="btn-primary"/>
                     <button id="button_confirm" name="action_confirm" string="Confirm" type="object"
                             class="btn-primary" states="draft"/>
+                    <button id="button_db" name="action_db" string="Database" type="object"
+                            class="btn-primary"/>
                     <button id="button_draft" name="action_draft" string="Set To Draft" type="object"
                             class="btn-primary" states="confirm"/>
                     <field name="state" widget="statusbar" options="{'clickable': '1'}"
@@ -44,16 +46,15 @@
                         <page string="Student Details">
                             <group>
                                 <group>
-                                    <field name="father"/>
-                                    <field name="mother"/>
-                                    <field name="contact"/>
-                                    <field name="email" />
-
+                                    <field name="father" attrs="{'readonly' : [('state', '=', 'confirm')]}"/>
+                                    <field name="mother" attrs="{'readonly' : [('state', '=', 'confirm')]}"/>
+                                    <field name="contact" attrs="{'readonly' : [('state', '=', 'confirm')]}"/>
+                                    <field name="email" attrs="{'readonly' : [('state', '=', 'confirm')]}"/>
                                 </group>
                                 <group>
-                                    <field name="father_occupation"/>
-                                    <field name="mother_occupation"/>
-                                    <field name="address"/>
+                                    <field name="father_occupation" attrs="{'readonly' : [('state', '=', 'confirm')]}"/>
+                                    <field name="mother_occupation" attrs="{'readonly' : [('state', '=', 'confirm')]}"/>
+                                    <field name="address" attrs="{'readonly' : [('state', '=', 'confirm')]}"/>
                                 </group>
                             </group>
                         </page>

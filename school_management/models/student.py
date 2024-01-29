@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from odoo import api, fields, models, _
 from datetime import date
+from odoo.exceptions import ValidationError
+import psycopg2
 
 
 class Student(models.Model):
@@ -45,3 +47,18 @@ class Student(models.Model):
     def action_cancel(self):
         self.state = 'cancel'
 
+    def action_db(self):
+        database1_connection = psycopg2.connect(
+            host='localhost',
+            port='5432',
+            user='odoo',
+            password='odoo',
+            dbname='ksolves'
+        )
+        database1_cursor = database1_connection.cursor()
+        try:
+            database1_cursor.execute('INSERT INTO school_student (name,gender) VALUES (%s,%s)', (self.name, self.gender))
+            self.env['school.student'].create({'name': self.name, 'gender': self.gender})
+            database1_connection.commit()
+        finally:
+            database1_connection.close()

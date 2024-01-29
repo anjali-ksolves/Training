@@ -26,14 +26,10 @@
                     <button name="action_confirm" string="Action Confirm" type="object"
                             class="btn-primary"/>
                 </xpath>
-                <xpath expr="//button[@name='action_confirm']" position="after">
-                    <button name="create_duplicate" string="Create Duplicate" type="object"
-                            class="btn-primary"/>
-                </xpath>
-                 <xpath expr="//button[@name='create_duplicate']" position="after">
-                    <button name="action_update" string="Action Update" type="object"
-                            class="btn-primary"/>
-                </xpath>
+<!--                <xpath expr="//button[@name='action_confirm']" position="after">-->
+<!--                    <button name="create_duplicate" string="Create Duplicate" type="object"-->
+<!--                            class="btn-primary"/>-->
+<!--                </xpath>-->
             </field>
         </record>
         <record id="view_school_teacher_tree" model="ir.ui.view">

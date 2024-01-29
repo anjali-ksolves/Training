@@ -3,7 +3,7 @@
     'author': 'Anjali',
     'summary': 'Device Management System',
     'description': """Device Management System""",
-    'depends': ['base', 'hr'],
+    'depends': ['base', 'hr', 'web'],
     'data': [
         'security/ir.model.access.csv',
         'views/device_management_settings.xml',
@@ -16,8 +16,10 @@
     'assets': {
         'web.assets_backend': [
             'device_management/static/src/xml/customer_rating.xml',
+            'device_management/static/src/xml/device_button.xml',
             'device_management/static/src/scss/customer_rating.scss',
             'device_management/static/src/js/customer_rating.js',
+            'device_management/static/src/js/device_button.js',
 
         ]
     },

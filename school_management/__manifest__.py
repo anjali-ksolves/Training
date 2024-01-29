@@ -16,13 +16,13 @@
         'reports/student_report.xml',
         'reports/report.xml',
     ],
-    'assets': {
-        'web.assets_backend': [
-            'school_management/static/src/xml/valid_email_field.xml',
-            'school_management/static/src/js/valid_email_field.js',
-
-        ]
-    },
+    # 'assets': {
+    #     'web.assets_backend': [
+    #         'school_management/static/src/xml/valid_email_field.xml',
+    #         'school_management/static/src/js/valid_email_field.js',
+    #
+    #     ]
+    # },
     'installable': True,
     'application': True,
     'auto_install': False,

@@ -5,7 +5,7 @@
             <field name="name">device.assignment.tree</field>
             <field name="model">device.assignment</field>
             <field name="arch" type="xml">
-                <tree>
+                <tree js_class="button_in_tree">
                     <field name="change"/>
                     <field name="name" string="Device Assignment Name" attrs="{'invisible': [('change', '=', True)]}"/>
                     <field name="date_start" string="Start Date"/>
@@ -55,6 +55,17 @@
                 </p>
             </field>
         </record>
+        <record id="device_management_tree_inherit_js_class" model="ir.ui.view">
+            <field name="name">device.management.tree.inherit</field>
+            <field name="model">device.assignment</field>
+            <field name="inherit_id" ref="device_management.view_device_assignment_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="js_class">button_in_tree</attribute>
+                </xpath>
+            </field>
+        </record>
+
         <menuitem
                 id="menu_device_assignment"
                 name="Device Assignment"
