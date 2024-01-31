@@ -51,3 +51,11 @@ class DeviceAssignment(models.Model):
     def change_visibility(self):
         res = self.env['ir.config_parameter'].get_param('device')
         self.change = res
+
+    def check_rpc(self):
+        print("--------------");
+        for records in self:
+            records.state = 'approved'
+
+
+

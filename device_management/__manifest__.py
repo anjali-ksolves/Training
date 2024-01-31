@@ -12,15 +12,19 @@
         'views/employee.xml',
         'views/device_assignment.xml',
         'views/device_view.xml',
+        'views/device_model.xml',
+        'views/device_brand.xml',
     ],
     'assets': {
         'web.assets_backend': [
             'device_management/static/src/xml/customer_rating.xml',
             'device_management/static/src/xml/device_button.xml',
+            'device_management/static/src/xml/approved.xml',
             'device_management/static/src/scss/customer_rating.scss',
             'device_management/static/src/js/customer_rating.js',
             'device_management/static/src/js/device_button.js',
-
+            'device_management/static/src/js/device_extend.js',
+            'device_management/static/src/js/approved.js',
         ]
     },
     'installable': True,

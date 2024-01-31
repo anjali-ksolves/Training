@@ -1,0 +1,55 @@
+<odoo>
+    <record id="device_brand_form_view" model="ir.ui.view">
+        <field name="name">device.brand.form</field>
+        <field name="model">device.brand</field>
+        <field name="arch" type="xml">
+            <form string="Device Brand">
+                <header>
+                    <button name="create_record" string="Create Record (1,0)" type="object"/>
+                    <button name="update_record" string="Update Record (2,0)" type="object"/>
+                    <button name="delete_record" string="Delete Record (3,0)" type="object"/>
+                    <button name="unlink_record" string="Unlink Record (4,0)" type="object"/>
+                    <button name="link_record" string="Link Record (5,0)" type="object"/>
+                    <button name="replace_record" string="Replace Record (6,0)" type="object"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="device_brand_tree_view" model="ir.ui.view">
+        <field name="name">device.brand.tree</field>
+        <field name="model">device.brand</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" decoration-bf="1"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="device_brand_action" model="ir.actions.act_window">
+        <field name="name">Device Brand</field>
+        <field name="res_model">device.brand</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create Device Brand
+            </p>
+        </field>
+    </record>
+     <menuitem
+                id="menu_device_brand"
+                name="Device Brand"
+                parent="menu_device_root"
+                action="device_brand_action"
+                sequence="50"/>
+
+
+</odoo>

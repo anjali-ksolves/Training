@@ -1,28 +1,21 @@
-/** @odoo-module */
-import { ListController } from "@web/views/list/list_controller";
-import { registry } from '@web/core/registry';
-import { listView } from '@web/views/list/list_view';
-export class ExportButton extends ListController {
-   setup() {
-       super.setup();
-   }
-   onTestClick() {
-        console.log("On Global Button Click !!!!!!!!!")
+/** @odoo-module **/
 
-//       this.actionService.doAction({
-//          type: 'ir.actions.act_window',
-//          res_model: 'test.wizard',
-//          name:'Open Wizard',
-//          view_mode: 'form',
-//          view_type: 'form',
-//          views: [[false, 'form']],
-//          target: 'new',
-//          res_id: false,
-//      });
-   }
-}
-registry.category("views").add("button_in_tree", {
-   ...listView,
-   Controller: ExportButton,
-   buttonTemplate: "button_sale.ListView.Buttons",
+import { ConfirmationDialog } from "@web/core/confirmation_dialog/confirmation_dialog";
+import { patch } from "@web/core/utils/patch";
+import { ListController } from "@web/views/list/list_controller";
+import { Dialog } from "@web/core/dialog/dialog";
+import core from 'web.core';
+import { _t } from "@web/core/l10n/translation";
+import { sprintf } from "@web/core/utils/strings";
+
+patch(ListController.prototype, 'device_button', {
+
+   _onTestClick() {
+        console.log("Hellohiee");
+        this.dialogService.add(ConfirmationDialog, {
+            title: "Model",
+            body: sprintf(_t("Model: %s"), this.props.resModel),
+        });
+   },
+
 });

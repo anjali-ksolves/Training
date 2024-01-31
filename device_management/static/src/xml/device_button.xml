@@ -2,11 +2,9 @@
 <templates>
     <t t-inherit="web.ListView.Buttons" t-inherit-mode="extension" owl="1">
         <xpath expr="//*[@class='btn btn-primary o_list_button_add']" position="after">
-            <!--            <div t-on-click="onTestClick">-->
-            <button type="button" class="btn btn-primary" style="margin-left: 10px;" t-on-click="() => this.onTestClick()">
-                Global Button1
+            <button type="button" class="btn btn-primary o_list_button_global" style="margin-left: 10px;" t-on-click="() => this._onTestClick()">
+                Model
             </button>
-            <!--            </div>-->
         </xpath>
     </t>
 </templates>
